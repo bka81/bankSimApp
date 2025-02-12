@@ -1,0 +1,28 @@
+all: tdQ tdB tdPQ
+
+tdQ: testDriver_Q.o Queue.h Event.o EmptyDataCollectionException.o
+	g++ -o tdQ -Wall testDriver_Q.o Event.o EmptyDataCollectionException.o
+
+tdB: testDriver_B.o BinaryHeap.h EmptyDataCollectionException.o
+	g++ -o tdB -Wall testDriver_B.o EmptyDataCollectionException.o
+
+tdPQ: testDriver_Pq.o PriorityQueue.h BinaryHeap.h EmptyDataCollectionException.o
+	g++ -o tdPQ -Wall testDriver_Pq.o EmptyDataCollectionException.o
+
+testDriver_Q.o: testDriver_Q.cpp 
+	g++ -c -Wall testDriver_Q.cpp
+
+testDriver_B.o: testDriver_B.cpp
+	g++ -c -Wall testDriver_B.cpp
+
+testDriver_Pq.o: testDriver_Pq.cpp
+	g++ -c -Wall testDriver_Pq.cpp
+	
+Event.o: Event.cpp Event.h
+	g++ -c -Wall Event.cpp
+
+EmptyDataCollectionException.o: EmptyDataCollectionException.cpp EmptyDataCollectionException.h 
+	g++ -c -Wall EmptyDataCollectionException.cpp
+
+clean:	
+	rm -f tdQ tdB tdPQ *.o
